@@ -7,8 +7,6 @@ import base64
 from ultralytics import YOLO
 import os
 
-# Set the environment variable for the Google Cloud Vision API
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Path_for_google_api_credentials'
 
 def detect_text(image_path):
     """Detect text in the image using Google Cloud Vision API."""
@@ -129,4 +127,10 @@ def main():
         st.download_button(label="Download HTML File", data=html_content, file_name='result.html')
 
 if __name__ == "__main__":
+    # Write credentials to a temporary file
+    credentials_content = st.secrets["GOOGLE_APPLICATION_CREDENTIALS_CONTENT"]
+    credentials_path = "/tmp/credentials.json"
+    with open(credentials_path, 'w') as f:
+        f.write(credentials_content)
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
     main()
