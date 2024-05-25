@@ -128,7 +128,7 @@ def main():
 
 if __name__ == "__main__":
     # Write credentials to a temporary file
-    credentials_content = dict(st.secrets["GOOGLE_APPLICATION_CREDENTIALS_CONTENT"])
+    credentials_content = str(st.secrets["GOOGLE_APPLICATION_CREDENTIALS_CONTENT"])
     credentials_path = "/tmp/credentials.json"
     with open(credentials_path, 'w') as f:
         f.write(credentials_content)
