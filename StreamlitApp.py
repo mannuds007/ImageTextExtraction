@@ -6,7 +6,7 @@ import cv2
 import base64
 from ultralytics import YOLO
 import os
-
+import json
 
 def detect_text(image_path):
     """Detect text in the image using Google Cloud Vision API."""
