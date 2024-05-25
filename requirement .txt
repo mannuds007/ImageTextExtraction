@@ -1,0 +1,5 @@
+streamlit
+google-cloud-vision
+opencv-python-headless
+torch
+ultralytics
