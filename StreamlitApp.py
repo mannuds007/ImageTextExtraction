@@ -8,7 +8,7 @@ from ultralytics import YOLO
 import os
 
 # Set the environment variable for the Google Cloud Vision API
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'D:\code\GitHub\ImageTextExtraction\able-handbook-424201-r5-cfb5543282b5.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'Path_for_google_api_credentials'
 
 def detect_text(image_path):
     """Detect text in the image using Google Cloud Vision API."""
