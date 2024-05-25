@@ -128,10 +128,11 @@ def main():
 
 if __name__ == "__main__":
     # Write credentials to a temporary file
-    credentials_content = st.secrets["GOOGLE_APPLICATION_CREDENTIALS_CONTENT"]
-    credentials_json = json.loads(credentials_content)
-    credentials_path = "/tmp/credentials.json"
-    with open(credentials_path, 'w') as f:
-        f.write(credentials_json)
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
+    credentials_content = st.secrets["GOOGLE_APPLICATION_CREDENTIALS_CONTENT"]['credentials']
+    # credentials_json = json.loads(credentials_content)
+    # credentials_path = "/tmp/credentials.json"
+    # with open(credentials_path, 'w') as f:
+    #     f.write(credentials_json)
+    # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_content
     main()
