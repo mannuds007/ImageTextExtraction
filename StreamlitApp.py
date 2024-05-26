@@ -131,7 +131,7 @@ if __name__ == "__main__":
     credentials_content = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]['credentials']
     credentials_path = "/tmp/credentials.json"
     with open(credentials_path, 'w') as f:
-        json.dump(credentials_content, f)
+        json.dump(dict(credentials_content), f)
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
     #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_content
     main()
