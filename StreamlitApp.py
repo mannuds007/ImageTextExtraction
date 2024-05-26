@@ -104,7 +104,7 @@ def main():
         save_dir = results[0].save_dir
         saved_image_path = os.path.join(save_dir, image_path)
         if saved_image_path:
-            st.image(saved_image_path)
+            st.image(results[0].image)
         annotated_image = draw_annotations(saved_image_path, texts)
         # image_rgb = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
         # st.image(image_rgb, caption='Annotated Image', use_column_width=True)
