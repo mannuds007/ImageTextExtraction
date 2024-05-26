@@ -106,7 +106,8 @@ def main():
         annotated_image = draw_annotations(saved_image_path, texts)
         # image_rgb = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
         # st.image(image_rgb, caption='Annotated Image', use_column_width=True)
-        st.image(annotated_image, caption='Annotated Image', use_column_width=True)
+        if annoatated_image:
+            st.image(annotated_image, caption='Annotated Image', use_column_width=True)
         # Create a directory to save the output
         output_dir = Path("./test_output/")
         output_dir.mkdir(parents=True, exist_ok=True)
