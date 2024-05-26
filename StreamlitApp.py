@@ -134,5 +134,5 @@ if __name__ == "__main__":
     # with open(credentials_path, 'w') as f:
     #     f.write(credentials_json)
     # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(credentials_content)
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_content
     main()
