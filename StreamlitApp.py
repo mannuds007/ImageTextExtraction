@@ -88,42 +88,39 @@ def main():
         with open(image_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
 
-        # Detect text
         texts = detect_text(image_path)
         if texts:
             st.header("Text Detected:")
             st.write(texts[0].description)
 
-        # Load the YOLO model
+
         model = YOLO("yolov8m-seg.pt")
 
-        # Perform prediction
+        
         results = model.predict(image_path)
 
-        # Draw text annotations
+      
         results[0].save("/tmp/output.jpg")
         saved_image_path = "/tmp/output.jpg"
-        # if saved_image_path:
-        #     st.image(saved_image_path)
+      
         annotated_image = draw_annotations(saved_image_path, texts)
         image_rgb = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
         st.image(image_rgb, caption='Annotated Image', use_column_width=True)
-        # if annotated_image:
-        #     st.image(annotated_image, caption='Annotated Image', use_column_width=True)
-        # Create a directory to save the output
+ 
+
         output_dir = Path("./test_output/")
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Read the original image
+      
         original_image = cv2.imread(image_path)
 
-        # Save segmented objects and get their base64 representations
+       
         object_images = save_segmented_objects(results[0], original_image, output_dir)
 
-        # Generate HTML content
+
         html_content = generate_html(texts, object_images)
 
-        # Save the HTML content to a file
+    
         with open(output_dir / 'result.html', 'w') as f:
             f.write(html_content)
 
@@ -131,11 +128,10 @@ def main():
         st.download_button(label="Download HTML File", data=html_content, file_name='result.html')
 
 if __name__ == "__main__":
-    # Write credentials to a temporary file
+    
     credentials_content = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]['credentials']
     credentials_path = "/tmp/credentials.json"
     with open(credentials_path, 'w') as f:
         json.dump(dict(credentials_content), f)
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
-    #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_content
     main()
